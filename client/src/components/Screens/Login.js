@@ -2,10 +2,14 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Login = () => {
+    const location = useLocation();
     return <div>
         <div className="card">
             <div className="inner-container">
-                <h2>Instagram</h2>
+                <div className="brand-logo">
+                    <h2>Instagram</h2>
+                </div>
+
                 <div className="input-container">
                     <input type="text" placeholder="email" />
                     <input type="text" placeholder="password" />

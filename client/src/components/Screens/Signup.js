@@ -9,7 +9,9 @@ const Signup = () => {
         <div>
             <div className={myRoute === "signup" ? "signupCard card" : "card"}>
                 <div className="inner-container">
-                    <h2>Instagram</h2>
+                    <div className="brand-logo">
+                        <h2>Instagram</h2>
+                    </div>
 
                     <div className="input-container">
                         <input type="text" placeholder="Name" />

@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 a{
 color: black !important ;
 }
@@ -9,7 +15,7 @@ color: black !important ;
 }
 
 
-/* style for sign in component */
+/* style for sign in and sign up component */
 .card {
   
   height: 350px;
@@ -26,14 +32,16 @@ color: black !important ;
 }
 
 .input-container{
-  padding: 30px;
+  padding: 0px 25px;
 }
 
 .input-container input[type=text]:focus {
   border-bottom: 0.5px solid #8a42b6 !important;
 box-shadow: 0 1px 0 0 #8a42b6 !important;
 }
-
+.btn-container {
+  margin-top: 30px;
+}
 .btn-container button{
   background-color: #6a1b9a;
 }
@@ -42,4 +50,97 @@ box-shadow: 0 1px 0 0 #8a42b6 !important;
   height: 400px;
   width: 400px;
   margin: auto;
+}
+
+/* styling for profile page */
+
+
+.profile-container{
+  max-width: 950px;
+  margin: 0 auto;
+}
+.profile-header{
+  display: flex;
+  margin-top: 25px;
+ 
+}
+.left-profile-pic{
+  width: 20%;
+}
+.left-profile-pic img {
+  border-radius: 75px;
+  margin-top: 22px;
+}
+
+.right-profile-info{
+  width: 80%;
+  padding-left: 100px;
+}
+
+.user-name-sec{
+  display: flex;
+}
+.edit-profile,.setting-icon{
+  padding-top: 12px;
+  padding-left: 12px;
+}
+
+.edit-profile-btn{
+  background-color: transparent;
+  border : 1px solid #dbdbdb;
+  border-radius: 4px;
+  box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    text-transform: inherit;
+    text-overflow: ellipsis;
+   border:  1px solid rgba(var(--ca6,219,219,219),1);
+}
+
+.custom-icon{
+  height: 30px;
+    width: 22px;
+}
+
+.gallary{
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  padding-top: 55px;
+  margin-top: 40px;
+  border-top: 1px solid #dbdbdb;
+}
+.gallary-imgs{
+  margin-bottom: 25px;
+}
+
+.gallary img {
+  height: 293px;
+  width: 293px;
+}
+
+.post-info ul {
+  display: flex;
+  padding-top: 10px;
+ 
+}
+
+.post-info ul li {
+  padding-left: 15px;
+}
+
+.post-info ul li:nth-child(1){
+  margin-left: -15px;
+}
+
+.user-description-container{
+  padding-top: 10px;
+}
+
+.user-description{
+  padding-top: 10px;
 }
