@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { BiLogOut } from "react-icons/bi";
 import { Link } from "react-router-dom";
-const NavBar = () => {
+import { Redirect } from "react-router";
+const NavBar = ({ history }) => {
+  const [isVerified, setVerification] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setVerification((e) => !e);
+    }
+  }, []);
+ 
+  const logOut = () => {
+    localStorage.clear("token");
+    window.location.reload();
+    // history.push("/login");
+  };
   return (
     <nav>
       <div className="nav-wrapper white">
@@ -9,13 +24,28 @@ const NavBar = () => {
         </Link>
         <ul id="nav-mobile" className="right">
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/createpost">Create Post</Link>
           </li>
-          <li>
-            <Link to="/signup">Sign up</Link>
-          </li>
+
+          {isVerified ? (
+            ""
+          ) : (
+            <li>
+              {" "}
+              <Link to="/signup">Sign up</Link>
+            </li>
+          )}
           <li>
             <Link to="/profile">Profile</Link>
+          </li>
+          <li>
+            {isVerified ? (
+              <span style={{ color: "black" }} onClick={() => logOut()}>
+                Log Out
+              </span>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
           </li>
         </ul>
       </div>

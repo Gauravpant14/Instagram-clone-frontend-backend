@@ -13,6 +13,7 @@ router.get("/protected", requireLogin, (req, res) => {
 
 //sign-up route
 router.post("/signup", (req, res) => {
+  console.log(req.body, "this is req.body");
   const { name, email, password } = req.body;
 
   if (!email || !password || !name) {
@@ -36,7 +37,7 @@ router.post("/signup", (req, res) => {
           .save()
           .then((callback) => {
             //   console.log(callback, "userserere"); ///here callback is the data that is saved into database ...
-            res.json({ message: "saved successfully" });
+            res.status(200).json({ message: "saved successfully" });
           })
           .catch((err) => {
             console.log(err);
@@ -44,13 +45,14 @@ router.post("/signup", (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err, "err in signup");
     });
 });
 
 //sign-in route
 router.post("/signin", (req, res) => {
   const { email, password } = req.body;
+  console.log(req.body,"body in signin api")
   if (!email || !password) {
     return res.status(422).json({ error: "please add email or password" });
   }

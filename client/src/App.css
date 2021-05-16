@@ -90,14 +90,14 @@ box-shadow: 0 1px 0 0 #8a42b6 !important;
   border : 1px solid #dbdbdb;
   border-radius: 4px;
   box-sizing: border-box;
-    cursor: pointer;
-    display: block;
-    font-weight: 600;
-    padding: 5px 9px;
-    text-align: center;
-    text-transform: inherit;
-    text-overflow: ellipsis;
-   border:  1px solid rgba(var(--ca6,219,219,219),1);
+  cursor: pointer;
+  display: block;
+  font-weight: 600;
+  padding: 5px 9px;
+  text-align: center;
+  text-transform: inherit;
+  text-overflow: ellipsis;
+  border:  1px solid rgba(var(--ca6,219,219,219),1);
 }
 
 .custom-icon{
@@ -143,4 +143,60 @@ box-shadow: 0 1px 0 0 #8a42b6 !important;
 
 .user-description{
   padding-top: 10px;
+}
+
+
+/* Styling for Home card */
+
+.home-card{
+  width: 500px;
+  height: auto;
+  margin-top: 15px;
+}
+.user-name-home{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.card-image{
+  padding-top: 5px;
+}
+
+.option-icon{
+  height: 20px;
+    width: 17px;
+    margin-top: 8px;
+    margin-right: 8px
+}
+
+.reaction-icons{
+  display: flex;
+}
+
+.like-icon,.comment-icon,.share-icon{
+height: 24px;
+width: 36px;
+}
+
+.like-icon{
+  margin-left: -10px;
+}
+.comment-icon{
+  padding: 2px;
+}
+
+
+/* styling for create post */
+.create-post{
+  width: 500px;
+  height: auto;
+  transform: translate(-50px, 90px);
+  margin-top: 10px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.upload-img{
+  background-color: #6a1b9a;
 }
