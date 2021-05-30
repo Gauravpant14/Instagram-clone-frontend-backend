@@ -35,6 +35,7 @@ export const signInApi = (signIndata, history) => {
       if (response.status === 200) {
         toast.success("Successfully Logged In !!!");
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("_id", response.data.userInfo._id);
         setTimeout(() => {
           history.push("/");
         }, 1000);
@@ -42,7 +43,7 @@ export const signInApi = (signIndata, history) => {
     } catch (error) {
       console.log(error, " resonse from error");
       toast.error(JSON.stringify(error.message));
-      toast.error(error.response.data.error);
+      // toast.error(error.response.data.error);
       // dispatch(fetchDataFailure(error));
     }
   };

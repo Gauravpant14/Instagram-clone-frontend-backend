@@ -21,7 +21,7 @@ export const fetchDataFailure = (error) => {
   };
 };
 
-export const signUp = (signUpdata) => {
+export const signUp = (signUpdata, history) => {
   console.log(signUpdata);
 
   return async (dispatch) => {
@@ -33,6 +33,7 @@ export const signUp = (signUpdata) => {
       );
       console.log(response, "response ffroma api");
       toast.success(response.data.message);
+      history.push("/login");
     } catch (error) {
       console.log(error.response, " resonse from error");
       toast.error(error.response.data.error);

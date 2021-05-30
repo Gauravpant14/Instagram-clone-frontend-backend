@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {  ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import {signUp} from './../../redux/index'
-const Signup = () => {
+const Signup = ({history}) => {
     const location = useLocation();
     const myRoute = location.pathname.substring(1);
     const dispatch = useDispatch()
@@ -26,7 +26,7 @@ const Signup = () => {
             name: val.name,
             password: val.password,
             email: val.email
-        }))
+        },history))
     }
 
     return (
@@ -51,7 +51,7 @@ const Signup = () => {
                     </h6>
                 </div>
             </div>
-            <ToastContainer />
+            
         </div>
     );
 };

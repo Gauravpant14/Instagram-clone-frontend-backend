@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router";
+
 const NavBar = ({ history }) => {
   const [isVerified, setVerification] = useState(false);
   useEffect(() => {

@@ -21,16 +21,22 @@ export const fetchAllPostFailure = (error) => {
   };
 };
 
-export const getAllDataApi = () => {
-  const token = localStorage.getItem("token");
+export const getAllDataApi = (token) => {
+  // const token = localStorage.getItem("token");
+
+  console.log(token, "token in getallapi");
   return async (dispatch) => {
     dispatch(fetchAllPostRequest);
     try {
-      const response = await axios.get("http://localhost:5000/allpost", {
-        Authorization: token,
+      const response = await axios.get(`http://localhost:5000/allpost/`, {
+        headers: {
+          authorization: token,
+        },
       });
 
-      console.log(response, "response ffroma api");
+      console.log(response, "response froma api");
+      const allData = response.data.posts;
+      dispatch(fetchAllPostSuccess(allData));
     } catch (error) {
       console.log(error.response, " resonse from error");
 

@@ -6,6 +6,7 @@ import Login from "./components/Screens/Login";
 import Signup from "./components/Screens/Signup";
 import Profile from "./components/Screens/Profile";
 import CreatePost from "./components/Screens/CreatePost";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/createpost" component={CreatePost} />
         </Switch>
+        <ToastContainer />
       </Router>
     </div>
   );
