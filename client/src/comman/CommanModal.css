@@ -1,0 +1,18 @@
+.ModalBody{
+    background-color: aliceblue;
+    height: 144px;
+    width: 332px;
+    top: 98px;
+    /* right: -50%; */
+    left: 70%;
+    position: fixed;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+}
+
+.container{
+    position: relative;
+}
+.list li{padding: 5px;
+border: 1px solid;
+margin-top: 5px;
+}

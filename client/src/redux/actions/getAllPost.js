@@ -21,9 +21,30 @@ export const fetchAllPostFailure = (error) => {
   };
 };
 
-export const getAllDataApi = (token) => {
-  // const token = localStorage.getItem("token");
+export const deletePostRequest = (data) => {
+  return {
+    type: "DELETE_REQUEST",
+  };
+};
 
+
+export const deletePostSuccess = (data) => {
+  return {
+    type: "DELETE_SUCCESS",
+    payload: data,
+  };
+};
+
+export const deletePostFailure = (data) => {
+  return {
+    type: "DELETE_FAILURE",
+    payload: data,
+  };
+};
+
+
+export const getAllDataApi = (token) => {
+  
   console.log(token, "token in getallapi");
   return async (dispatch) => {
     dispatch(fetchAllPostRequest);
@@ -44,3 +65,19 @@ export const getAllDataApi = (token) => {
     }
   };
 };
+
+export const deletePost = (id) => {
+  return async (dispatch) => {
+    dispatch(deletePostRequest);
+    try {
+      const res = await axios.delete(`http://localhost:5000/allpost/${id}`)
+      console.log(res,'delete Response')
+      dispatch(deletePostSuccess(id))
+
+    }
+    catch(error) {
+      console.log(error.response,"response from delete error")
+    }
+
+  }
+}

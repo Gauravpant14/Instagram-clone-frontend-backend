@@ -36,15 +36,16 @@ const CreatePost = () => {
           body: data,
         }
       );
-      console.log(response, "response of photo api");
+      const result = await response.json()
+      console.log(result,"now check it");
 
       if (response.status === 200) {
-        setUrl(response.url);
+        setUrl(result.secure_url);
         dispatch(
           postUserData({
             title: postBody.title,
             body: postBody.body,
-            photo: response.url,
+            photo: result.secure_url,
           })
         );
       }

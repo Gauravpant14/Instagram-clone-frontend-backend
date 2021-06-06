@@ -1,20 +1,48 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { BiLogOut } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 
-const NavBar = ({ history }) => {
-  const [isVerified, setVerification] = useState(false);
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setVerification((e) => !e);
+
+const NavBar = () => {
+  const state = useSelector((state) => state.signInReducer);
+  const token = localStorage.getItem("token");
+  const history = useHistory();
+  const renderNavItems = () => {
+    if (localStorage.getItem("token")) {
+      return [
+        <li>
+          <Link to="/profile">Profile</Link>
+        </li>,
+        <li>
+          <Link to="/createpost">Create Post</Link>
+        </li>,
+
+        <li>
+          <span style={{ color: "black" }} onClick={() => logOut()}>
+            Log Out
+          </span>
+        </li>,
+      ];
+    } else {
+      return [
+        <li>
+          <Link to="/login">Login</Link>
+        </li>,
+
+        <li>
+          {" "}
+          <Link to="/signup">Sign up</Link>
+        </li>,
+      ];
     }
-  }, []);
- 
+  };
+
   const logOut = () => {
     localStorage.clear("token");
-    window.location.reload();
-    // history.push("/login");
+    // window.location.reload();
+    // return <Link to="/login" />;
+    history.push("/login");
   };
   return (
     <nav>
@@ -23,30 +51,7 @@ const NavBar = ({ history }) => {
           Instagram
         </Link>
         <ul id="nav-mobile" className="right">
-          <li>
-            <Link to="/createpost">Create Post</Link>
-          </li>
-
-          {isVerified ? (
-            ""
-          ) : (
-            <li>
-              {" "}
-              <Link to="/signup">Sign up</Link>
-            </li>
-          )}
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            {isVerified ? (
-              <span style={{ color: "black" }} onClick={() => logOut()}>
-                Log Out
-              </span>
-            ) : (
-              <Link to="/login">Login</Link>
-            )}
-          </li>
+          {renderNavItems()}
         </ul>
       </div>
     </nav>

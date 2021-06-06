@@ -37,7 +37,13 @@ export const signInApi = (signIndata, history) => {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("_id", response.data.userInfo._id);
         setTimeout(() => {
-          history.push("/");
+          const token = localStorage.getItem("token");
+          if (token) {
+            history.push("/", {
+              token: token,
+            });
+          }
+          dispatch(fetchSignInDataSuccess(token));
         }, 1000);
       }
     } catch (error) {
