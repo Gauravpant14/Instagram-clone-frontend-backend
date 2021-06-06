@@ -18,10 +18,10 @@ const NavBar = () => {
           <Link to="/createpost">Create Post</Link>
         </li>,
 
-        <li>
-          <span style={{ color: "black" }} onClick={() => logOut()}>
+        <li onClick={() => logOut()}>
+          {/* <span style={{ color: "black" }} > */}
             Log Out
-          </span>
+          {/* </span> */}
         </li>,
       ];
     } else {

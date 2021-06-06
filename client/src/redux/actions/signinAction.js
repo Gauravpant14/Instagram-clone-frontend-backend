@@ -31,7 +31,7 @@ export const signInApi = (signIndata, history) => {
         "http://localhost:5000/signin",
         signIndata
       );
-      //   console.log(response, "response ffroma api");
+        console.log(response, "loginapi");
       if (response.status === 200) {
         toast.success("Successfully Logged In !!!");
         localStorage.setItem("token", response.data.token);
@@ -44,11 +44,12 @@ export const signInApi = (signIndata, history) => {
             });
           }
           dispatch(fetchSignInDataSuccess(token));
+          localStorage.setItem("userId",response.data.userInfo._id)
         }, 1000);
       }
     } catch (error) {
-      console.log(error, " resonse from error");
-      toast.error(JSON.stringify(error.message));
+      console.log(error.response, " resonse from error");
+      toast.error(JSON.stringify(error.response?.data.error || error.message));
       // toast.error(error.response.data.error);
       // dispatch(fetchDataFailure(error));
     }

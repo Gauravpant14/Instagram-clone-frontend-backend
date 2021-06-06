@@ -62,7 +62,7 @@ const toggle = () => setModal(!modal);
                     </div>
                   </div>
                   <div className="card-image">
-                    <img src={e.photo} alt="" srcset="" />
+                    <img src={e.photo} alt="" srcset="" height='300' width='300'/>
                   </div>
                   <div className="card-content">
                     <div className="reaction-icons">
