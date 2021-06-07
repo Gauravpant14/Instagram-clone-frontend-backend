@@ -43,6 +43,8 @@ export const deletePostFailure = (data) => {
 };
 
 
+
+
 export const getAllDataApi = (token) => {
   
   console.log(token, "token in getallapi");

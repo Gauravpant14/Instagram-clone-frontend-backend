@@ -1,23 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-a{
-color: black !important ;
+a {
+  color: black !important ;
 }
 
-.brand-logo{
-  font-family: 'Grand Hotel', cursive;
+.brand-logo {
+  font-family: "Grand Hotel", cursive;
 }
-
 
 /* style for sign in and sign up component */
 .card {
-  
   height: 350px;
   width: 400px;
   margin: auto;
@@ -28,25 +26,25 @@ color: black !important ;
 }
 
 .inner-container h2 {
- padding-top: 22px;
+  padding-top: 22px;
 }
 
-.input-container{
+.input-container {
   padding: 0px 25px;
 }
 
-.input-container input[type=text]:focus {
+.input-container input[type="text"]:focus {
   border-bottom: 0.5px solid #8a42b6 !important;
-box-shadow: 0 1px 0 0 #8a42b6 !important;
+  box-shadow: 0 1px 0 0 #8a42b6 !important;
 }
 .btn-container {
   margin-top: 30px;
 }
-.btn-container button{
+.btn-container button {
   background-color: #6a1b9a;
 }
 
-.signupCard{
+.signupCard {
   height: 400px;
   width: 400px;
   margin: auto;
@@ -54,17 +52,15 @@ box-shadow: 0 1px 0 0 #8a42b6 !important;
 
 /* styling for profile page */
 
-
-.profile-container{
+.profile-container {
   max-width: 950px;
   margin: 0 auto;
 }
-.profile-header{
+.profile-header {
   display: flex;
   margin-top: 25px;
- 
 }
-.left-profile-pic{
+.left-profile-pic {
   width: 20%;
 }
 .left-profile-pic img {
@@ -72,22 +68,23 @@ box-shadow: 0 1px 0 0 #8a42b6 !important;
   margin-top: 22px;
 }
 
-.right-profile-info{
+.right-profile-info {
   width: 80%;
   padding-left: 100px;
 }
 
-.user-name-sec{
+.user-name-sec {
   display: flex;
 }
-.edit-profile,.setting-icon{
+.edit-profile,
+.setting-icon {
   padding-top: 12px;
   padding-left: 12px;
 }
 
-.edit-profile-btn{
+.edit-profile-btn {
   background-color: transparent;
-  border : 1px solid #dbdbdb;
+  border: 1px solid #dbdbdb;
   border-radius: 4px;
   box-sizing: border-box;
   cursor: pointer;
@@ -97,15 +94,15 @@ box-shadow: 0 1px 0 0 #8a42b6 !important;
   text-align: center;
   text-transform: inherit;
   text-overflow: ellipsis;
-  border:  1px solid rgba(var(--ca6,219,219,219),1);
+  border: 1px solid rgba(var(--ca6, 219, 219, 219), 1);
 }
 
-.custom-icon{
+.custom-icon {
   height: 30px;
-    width: 22px;
+  width: 22px;
 }
 
-.gallary{
+.gallary {
   display: flex;
   flex-wrap: wrap;
   /* flex-direction: column; */
@@ -114,7 +111,7 @@ box-shadow: 0 1px 0 0 #8a42b6 !important;
   margin-top: 40px;
   border-top: 1px solid #dbdbdb;
 }
-.gallary-imgs{
+.gallary-imgs {
   margin-bottom: 25px;
 }
 
@@ -126,69 +123,68 @@ box-shadow: 0 1px 0 0 #8a42b6 !important;
 .post-info ul {
   display: flex;
   padding-top: 10px;
- 
 }
 
 .post-info ul li {
   padding-left: 15px;
 }
 
-.post-info ul li:nth-child(1){
+.post-info ul li:nth-child(1) {
   margin-left: -15px;
 }
 
-.user-description-container{
+.user-description-container {
   padding-top: 10px;
 }
 
-.user-description{
+.user-description {
   padding-top: 10px;
 }
-
 
 /* Styling for Home card */
 
-.home-card{
+.home-card {
   width: 500px;
   height: auto;
   margin-top: 15px;
 }
-.user-name-home{
+.user-name-home {
   display: flex;
   justify-content: space-between;
   padding: 10px;
 }
 
-.card-image{
+.card-image {
   padding-top: 5px;
 }
 
-.option-icon{
+.option-icon {
   height: 20px;
-    width: 17px;
-    margin-top: 8px;
-    margin-right: 8px
+  width: 17px;
+  margin-top: 8px;
+  margin-right: 8px;
 }
 
-.reaction-icons{
+.reaction-icons {
   display: flex;
 }
 
-.like-icon,.comment-icon,.share-icon{
-height: 24px;
-width: 36px;
+.like-icon,
+.comment-icon,
+.share-icon {
+  height: 24px;
+  width: 36px;
 }
 
-.like-icon{
+.like-icon {
   margin-left: -10px;
 }
-.comment-icon{
+.comment-icon {
   padding: 2px;
 }
 
-
 /* styling for create post */
-.create-post{
+.create-post {
   width: 500px;
   height: auto;
   transform: translate(-50px, 90px);
@@ -197,6 +193,56 @@ width: 36px;
   text-align: center;
 }
 
-.upload-img{
+.upload-img {
   background-color: #6a1b9a;
 }
+
+/* Styling For Pagination */
+
+.pagination {
+  display: flex !important;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.pagination li {
+  /* display: flex; */
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+}
+/* &:not(:last-child) {
+      border-right: 1px solid #ddd;
+    } */
+.pagination li a {
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+
+  cursor: pointer;
+  color: #337ab7;
+  background-color: #fff;
+  border-color: #ddd;
+
+  border: 1px solid #bebbbb;
+}
+.pagination .customIcon {
+  font-size: 10px;
+}
+
+.pagination li.active a {
+  background-color: #337ab7;
+  z-index: 3;
+  color: #fff !important;
+  cursor: default;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+
+.pagination li.disabled a {
+  color: #777;
+  cursor: not-allowed;
+}
+
+/* Pagination Styling End Here */
