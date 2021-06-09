@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { postUserData } from "./../../redux/actions/postDataAction";
 
+
 const CreatePost = () => {
   const [postBody, setPostBody] = useState({
     title: "",
     body: "",
   });
   const [image, setImage] = useState({});
+  const [loading,setLoading] = useState(false)
   const [url, setUrl] = useState("");
   const dispatch = useDispatch();
 
@@ -23,6 +25,7 @@ const CreatePost = () => {
   };
 
   const postDetails = async () => {
+    setLoading(true)
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "insta-clone");
@@ -41,6 +44,7 @@ const CreatePost = () => {
 
       if (response.status === 200) {
         setUrl(result.secure_url);
+        setLoading(false)
         dispatch(
           postUserData({
             title: postBody.title,
@@ -56,7 +60,14 @@ const CreatePost = () => {
   };
   return (
     <>
+     
+    
+    
+
+    {/* <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' /> */}
+  {/* </Segment> */}
       <div className="card create-post">
+      
         <h4>Upload New Posts</h4>
         {JSON.stringify(url)}
         <div className="title-input">
@@ -88,6 +99,9 @@ const CreatePost = () => {
             <input className="file-path validate" type="text" />
           </div>
         </div>
+        {loading ? <div class="progress">
+      <div class="indeterminate"></div>
+  </div>: null }
         <div className="btn-container">
           <button
             className="waves-effect waves-dark btn"

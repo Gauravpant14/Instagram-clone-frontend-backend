@@ -63,8 +63,10 @@ router.post("/signin", (req, res) => {
     bcrypt
       .compare(password, savedUser.password)
       .then((doMatch) => {
+        
+    
         if (doMatch) {
-          const { _id, name, email } = savedUser;
+          const { _id, name, email } = savedUser; //here destructrued id,name,email from savedUser
           // res.json({ message: "Succesfully signed in" });
           const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET);
           res.json({

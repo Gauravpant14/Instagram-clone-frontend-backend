@@ -45,6 +45,7 @@ export const signInApi = (signIndata, history) => {
           }
           dispatch(fetchSignInDataSuccess(token));
           localStorage.setItem("userId",response.data.userInfo._id)
+          localStorage.setItem("userName",response.data.userInfo.name)
         }, 1000);
       }
     } catch (error) {

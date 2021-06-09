@@ -74,11 +74,18 @@ export const deletePost = (id) => {
     try {
       const res = await axios.delete(`http://localhost:5000/allpost/${id}`)
       console.log(res,'delete Response')
+      if(res.status === 200){
+        toast.success(res.data.message)
+      }
+      if(res.status === 404){
+        
+      }
       dispatch(deletePostSuccess(id))
 
     }
     catch(error) {
-      console.log(error.response,"response from delete error")
+      toast.error(error.response.data.message)
+      // console.log(error.response,"response from delete error")
     }
 
   }

@@ -9,14 +9,16 @@ import { Button } from 'bootstrap';
 const Profile = () => {
     const allPost = useSelector(state => state.allPost.posts)
     const userID = localStorage.getItem("userId")
+    const userName = localStorage.getItem("userName")
     const userData = allPost.filter((e) => e.postedBy._id.includes(userID))
     console.log(userData, "filtered Data");
     const [openImg, setOpenImg] = useState({
         open: false,
         data: null
     })
+
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostPerPage] = useState(3);
+    const [postsPerPage, setPostPerPage] = useState(9);
     const dispatch = useDispatch();
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -38,6 +40,13 @@ const Profile = () => {
         })
     }
 
+    const capitalizeFirstLetter = (text) => {
+        return text.toLowerCase()
+            .split(' ')
+            .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(' ');
+    }
+
     return (
         <div>
             <div className="profile-container">
@@ -48,7 +57,7 @@ const Profile = () => {
                     <section className="right-profile-info">
                         <div className="user-name-sec">
                             <div className="user-name">
-                                <h5>gauravpant14</h5>
+                                <h5>{userName}</h5>
                             </div>
 
                             <div className="edit-profile">
@@ -73,7 +82,7 @@ const Profile = () => {
                             </ul>
                         </div>
                         <div className="user-description-container">
-                            <strong style={{ "font-weight": 600, "font-size": "17px" }}>Gaurav Pant</strong>
+                            <strong style={{ "font-weight": 600, "font-size": "17px" }}>{capitalizeFirstLetter(userName)}</strong>
                             <div className="user-description">
                                 <span>🔥I'm standing up 💯
                                 <br />🔥I'mma face my demons 👊
@@ -96,7 +105,7 @@ const Profile = () => {
                     //   <FontAwesomeIcon icon={faChevronRight} className="customIcon" />
                     // }
                     totalItemsCount={userData.length}
-                    pageRangeDisplayed={5}
+                    pageRangeDisplayed={3}
                     onChange={(e) => handlePageClick(e)}
                 />
 
@@ -128,9 +137,12 @@ const ShowImg = ({ data, closeImg }) => {
     return (
         <div>
             <img src={data.photo} alt="" srcset="" height='500' width='100%' />
-            <button onClick={() => closeImg({
-                open: false
-            })}>Close</button>
+
+            <div className="btn-container">
+                <button className="waves-effect waves-light btn" onClick={() => closeImg({
+                    open: false
+                })}>Close</button>
+            </div>
         </div>
     )
 }

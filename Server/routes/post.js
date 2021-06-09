@@ -50,23 +50,23 @@ router.post("/createpost", requireLogin, (req, res) => {
 
 //delete post 
 
-router.delete('/allpost/:noteId', (req,res) =>{
-  Post.findByIdAndRemove(req.params.noteId)
-  .then(note => {
-      if(!note) {
+router.delete('/allpost/:postId', (req,res) =>{
+  Post.findByIdAndRemove(req.params.postId)
+  .then(post => {
+      if(!post) {
           return res.status(404).send({
-              message: "Note not found with id " + req.params.noteId
+              message: "Note not found with id " + req.params.postId
           });
       }
       res.send({message: "Note deleted successfully!"});
   }).catch(err => {
       if(err.kind === 'ObjectId' || err.name === 'NotFound') {
           return res.status(404).send({
-              message: "Note not found with id " + req.params.noteId
+              message: "Note not found with id " + req.params.postId
           });                
       }
       return res.status(500).send({
-          message: "Could not delete note with id " + req.params.noteId
+          message: "Could not delete note with id " + req.params.postId
       });
   });
 });

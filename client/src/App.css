@@ -14,11 +14,22 @@ a {
   font-family: "Grand Hotel", cursive;
 }
 
+nav .brand-logo {
+  margin-left: 20px !important;
+}
+
+.nav-wrapper ul li a {
+  text-transform: uppercase;
+}
+
+.user-description-container p:first-letter {
+  text-transform: uppercase;
+}
 /* style for sign in and sign up component */
 .card {
   height: 350px;
   width: 400px;
-  margin: auto;
+  margin: auto !important;
 }
 
 .inner-container {
@@ -65,7 +76,8 @@ a {
 }
 .left-profile-pic img {
   border-radius: 75px;
-  margin-top: 22px;
+  margin-top: 17px;
+  margin-left: 40px;
 }
 
 .right-profile-info {
@@ -98,8 +110,9 @@ a {
 }
 
 .custom-icon {
-  height: 30px;
+  height: 28px;
   width: 22px;
+  margin-top: 3px;
 }
 
 .gallary {
@@ -143,10 +156,14 @@ a {
 
 /* Styling for Home card */
 
+.home {
+  margin: auto;
+  max-width: fit-content;
+}
 .home-card {
   width: 500px;
   height: auto;
-  margin-top: 15px;
+  margin-top: 30px !important;
 }
 .user-name-home {
   display: flex;
@@ -187,8 +204,8 @@ a {
 .create-post {
   width: 500px;
   height: auto;
-  transform: translate(-50px, 90px);
-  margin-top: 10px;
+  /* transform: translate(-50px, 90px);*/
+  margin-top: 100px !important;
   padding: 10px 20px;
   text-align: center;
 }
@@ -212,9 +229,7 @@ a {
   text-align: center;
   line-height: 32px;
 }
-/* &:not(:last-child) {
-      border-right: 1px solid #ddd;
-    } */
+
 .pagination li a {
   text-decoration: none;
   display: block;
@@ -241,8 +256,23 @@ a {
 }
 
 .pagination li.disabled a {
-  color: #777;
-  cursor: not-allowed;
+  color: #777 !important;
+  cursor: not-allowed !important;
 }
 
 /* Pagination Styling End Here */
+
+/*loader*/
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-position: center top;
+  height: 100vh;
+  position: absolute;
+}
+
+/*loader that is not used */

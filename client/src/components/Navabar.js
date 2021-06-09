@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux'
 import { BiLogOut } from "react-icons/bi";
 import { Link,useHistory } from "react-router-dom";
 import { logoutSuccess } from "../redux/actions/getAllPost";
+import Modal from "../comman/MaterialModal/Modal";
 
 
 const NavBar = () => {
@@ -21,6 +22,8 @@ const NavBar = () => {
      setIsToken(false)
    }
  }, [isLogout])
+
+ 
   const history = useHistory();
   const renderNavItems = () => {
     if (token ) {
@@ -34,9 +37,9 @@ const NavBar = () => {
         </li>
 
         <li onClick={() => logOut()}>
-          <span style={{ color: "black" }} >
-            Log Out
-          </span>
+          {/* <span style={{ color: "black" }} > */}
+          <Link>Log out</Link>
+          {/* </span> */}
         </li>
         </>
       )
@@ -71,6 +74,9 @@ const NavBar = () => {
   };
   return (
     <nav>
+      {/* <Modal /> */}
+
+
       <div className="nav-wrapper white">
         <Link to="/" className="brand-logo left">
           Instagram
