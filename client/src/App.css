@@ -44,7 +44,8 @@ nav .brand-logo {
   padding: 0px 25px;
 }
 
-.input-container input[type="text"]:focus {
+.input-container input[type="text"]:focus,
+.input-container input[type="password"]:focus {
   border-bottom: 0.5px solid #8a42b6 !important;
   box-shadow: 0 1px 0 0 #8a42b6 !important;
 }
@@ -195,6 +196,7 @@ nav .brand-logo {
 
 .like-icon {
   margin-left: -10px;
+  display: flex;
 }
 .comment-icon {
   padding: 2px;

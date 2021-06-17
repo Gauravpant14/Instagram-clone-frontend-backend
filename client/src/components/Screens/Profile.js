@@ -135,7 +135,7 @@ const Profile = () => {
 
 const ShowImg = ({ data, closeImg }) => {
     return (
-        <div>
+        <div style={{ paddingTop: "15px" }}>
             <img src={data.photo} alt="" srcset="" height='500' width='100%' />
 
             <div className="btn-container">

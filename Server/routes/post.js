@@ -48,6 +48,44 @@ router.post("/createpost", requireLogin, (req, res) => {
     });
 });
 
+//Like Post
+
+router.put('/like',requireLogin,(req,res)=>{
+  Post.findByIdAndUpdate(req.body.postId,{
+      $push:{likes:req.user._id}
+  },{
+      new:true
+  }).exec((err,result)=>{
+      if(err){
+          return res.status(422).json({error:err})
+      }else{
+          res.json(result)
+      }
+  })
+})
+
+
+//unlike post 
+
+router.put('/unlike',requireLogin,(req,res) => {
+  Post.findByIdAndUpdate(req.body.postId,{
+    $pull:{likes:req.user._id}
+  },{
+    new:true // it means we are writing new updated recored in mongodb if we don't use this we'll get update the old record
+  }).exec((err,result) => {
+    if(err){
+      return res.status(422).json({error : err})
+    }
+    else{
+      res.json(result)
+    }
+  })
+
+});
+
+
+
+
 //delete post 
 
 router.delete('/allpost/:postId', (req,res) =>{

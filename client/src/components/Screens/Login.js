@@ -30,7 +30,7 @@ const Login = ({ history }) => {
 
 
                     <input type="text" placeholder="email" name="email" value={val.email} onChange={(e) => getVal(e)} />
-                    <input type="text" placeholder="password" name="password" value={val.password} onChange={(e) => getVal(e)} />
+                    <input type="password" placeholder="password" name="password" value={val.password} onChange={(e) => getVal(e)} />
                 </div>
 
                 <div className="btn-container">
