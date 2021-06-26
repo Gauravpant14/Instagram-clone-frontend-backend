@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import cardImg from "./../../assests/bg4.jpg";
 import { AiOutlineHeart, AiFillHeart, FiThumbsUp, FiThumbsDown } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { BiShare } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { getAllDataApi } from "../../redux/actions/getAllPost";
 import { fetchSignInDataSuccess } from "../../redux/actions/signinAction";
-import Skeleton from 'react-loading-skeleton';
-import CommanModal from "../../comman/CommanModal";
+
 import Modal from "../../comman/MaterialModal/Modal";
+import { allUsers, getAllUsersInfo } from "../../redux/actions/getAllUser";
 const Home = ({ history }) => {
   const location = useLocation();
-  console.log(location);
   const dispatch = useDispatch();
   const allPost = useSelector(state => state.allPost.posts)
+  const allUsers = useSelector(state => state.getAllUserReducer.userInfo)
   const [data, setData] = useState([])
-  const [isClicked, setClicked] = useState(false);
   const token = localStorage.getItem("token");
-  const [modal, setModal] = useState(false);
   const [details, setDetail] = useState(null)
-  const [likesNumber, setLikes] = useState();
-  const toggle = () => setModal(!modal);
+
+
 
   useEffect(() => {
     setData(allPost)
@@ -31,23 +28,18 @@ const Home = ({ history }) => {
   useEffect(() => {
     if (token) {
       dispatch(getAllDataApi(token));
-
-
+      dispatch(getAllUsersInfo(token));
     } else {
       dispatch(fetchSignInDataSuccess(null));
       history.push("/login");
     }
-  }, []);
+  }, [dispatch, history, token]);
 
   const deleteMe = (e) => {
-    console.log(e)
-    setModal((p) => !p)
     setDetail(e)
-
   }
 
   const likePost = async (id) => {
-    console.log(id)
     const response = await fetch('http://localhost:5000/like', {
       method: "put",
       headers: {
@@ -91,15 +83,12 @@ const Home = ({ history }) => {
       }
     })
     setData(newData)
-
   }
 
   return (
     <>
       {token && (
         <>
-
-
           <div className="home">
             {data.map((e) => (
               <div className="card home-card" id={e._id}>
@@ -130,26 +119,25 @@ const Home = ({ history }) => {
                   <div className="reaction-icons">
                     <div className="like-icon">
 
-                      <AiFillHeart size="ai-lg" />
+                      {/* <AiFillHeart size="ai-lg" /> */}
 
-
-
-                      {/* {isClicked ? (
+                      {e.likes.includes(localStorage.getItem("userId")) ? (
                         <AiFillHeart
-                          size="ai-lg"
-                          onClick={() => setClicked((e) => !e)}
-                        />
+                        size="ai-lg"
+                        onClick={() => unlikePost(e._id)}
+                      />
                       ) : (
                         <AiOutlineHeart
-                          size="ai-lg"
-                          onClick={() => setClicked((e) => !e)}
-                        />
-                      )} */}
+                        size="ai-lg"
+                        onClick={() => likePost(e._id)}
+                      />
+                        
+                        )}
                     </div>
-                    <div className="like-unlike">
+                    {/* <div className="like-unlike">
                       <i class="material-icons" onClick={() => likePost(e._id)}>thumb_up</i>
                       <i class="material-icons" onClick={() => unlikePost(e._id)}>thumb_down</i>
-                    </div>
+                    </div> */}
                     <div className="comment-icon">
                       <FaRegComment size="fa-lg" />
                     </div>

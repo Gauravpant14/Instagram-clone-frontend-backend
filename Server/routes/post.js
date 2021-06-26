@@ -3,6 +3,25 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const requireLogin = require("../middleware/requireLogin");
 const Post = mongoose.model("Post");
+const allUsers = mongoose.model("User") 
+
+//get all the users
+
+router.get("/allUsers",requireLogin,async (req,res) => {
+ const users = await allUsers.find().populate()
+ const userInfo = users.map((e) => {
+   return {
+    "id":e._id,
+    "name":e.name,
+    "email":e.email
+   }
+   
+ })
+  res.json(userInfo)
+  
+})
+
+
 
 //get all the post
 
@@ -55,10 +74,13 @@ router.put('/like',requireLogin,(req,res)=>{
       $push:{likes:req.user._id}
   },{
       new:true
-  }).exec((err,result)=>{
+  })
+  .populate("postedBy", "_id name")
+  .exec((err,result)=>{
       if(err){
           return res.status(422).json({error:err})
       }else{
+        console.log(result)
           res.json(result)
       }
   })
@@ -72,7 +94,9 @@ router.put('/unlike',requireLogin,(req,res) => {
     $pull:{likes:req.user._id}
   },{
     new:true // it means we are writing new updated recored in mongodb if we don't use this we'll get update the old record
-  }).exec((err,result) => {
+  })
+  .populate("postedBy", "_id name")
+  .exec((err,result) => {
     if(err){
       return res.status(422).json({error : err})
     }
