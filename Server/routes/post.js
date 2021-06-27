@@ -30,7 +30,7 @@ router.get("/allpost", requireLogin, (req, res) => {
   const _id = req.params;
   Post.find()
     .populate("postedBy", "_id name") //populate method populate the specific things from the database
-
+    .populate("comments.postedBy","_id name")
     .then((posts) => {
       res.json({ posts }); // this is called destructring ===> { posts : posts}
     })
@@ -76,6 +76,7 @@ router.put('/like',requireLogin,(req,res)=>{
       new:true
   })
   .populate("postedBy", "_id name")
+  .populate("comments.postedBy","_id name")
   .exec((err,result)=>{
       if(err){
           return res.status(422).json({error:err})
@@ -96,6 +97,7 @@ router.put('/unlike',requireLogin,(req,res) => {
     new:true // it means we are writing new updated recored in mongodb if we don't use this we'll get update the old record
   })
   .populate("postedBy", "_id name")
+  .populate("comments.postedBy","_id name")
   .exec((err,result) => {
     if(err){
       return res.status(422).json({error : err})
@@ -105,6 +107,32 @@ router.put('/unlike',requireLogin,(req,res) => {
     }
   })
 
+});
+
+
+//comment in post 
+router.put('/comment',requireLogin,(req,res)=>{
+  console.log(req.body,"-*----------------")
+  const comment = {
+    text:req.body.text,
+    postedBy:req.user._id //user info is in req.user in rquirelogin 
+  }
+  Post.findByIdAndUpdate(req.body.postId,{
+      $push:{comments:comment}
+  },{
+      new:true,
+      useFindAndModify: false
+  })
+  .populate("comments.postedBy","_id name")
+  .populate("postedBy", "_id name")
+  .exec((err,result)=>{
+      if(err){
+          return res.status(422).json({error:err})
+      }else{
+        console.log(result,"-----------------------------------")
+          res.json(result)
+      }
+  })
 });
 
 

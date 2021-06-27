@@ -85,6 +85,38 @@ const Home = ({ history }) => {
     setData(newData)
   }
 
+  const getLikerInfo = (likedBy) => {
+  //filtering user id and name form all users based on liked Arrays id
+   const likerInfo = allUsers.filter((e) => likedBy.includes(e.id))
+   console.log(likerInfo)
+  } 
+
+  const makeComment = async(text,postId) => {
+    console.log(postId)
+    const response = await fetch('http://localhost:5000/comment',{
+      method:"put",
+      headers:{
+        "content-Type": "application/json",
+        "Authorization": "Bearer" + token
+      },
+      body:JSON.stringify({
+        postId,
+        text
+      })          
+    })
+    console.log(response)
+    const result = await response.json()
+    const newData = data.map((item) => {
+      if (item._id === result._id) {
+        return result
+      }
+      else {
+        return item
+      }
+    })
+    setData(newData)
+  }
+
   return (
     <>
       {token && (
@@ -103,7 +135,6 @@ const Home = ({ history }) => {
                     <div className="option-icon">
                       <a href="#modal1" class="modal-trigger">
                         <BsThreeDots
-
                           size="bs-lg"
                           onClick={() => deleteMe(e)}
                         />
@@ -119,8 +150,6 @@ const Home = ({ history }) => {
                   <div className="reaction-icons">
                     <div className="like-icon">
 
-                      {/* <AiFillHeart size="ai-lg" /> */}
-
                       {e.likes.includes(localStorage.getItem("userId")) ? (
                         <AiFillHeart
                         size="ai-lg"
@@ -134,10 +163,6 @@ const Home = ({ history }) => {
                         
                         )}
                     </div>
-                    {/* <div className="like-unlike">
-                      <i class="material-icons" onClick={() => likePost(e._id)}>thumb_up</i>
-                      <i class="material-icons" onClick={() => unlikePost(e._id)}>thumb_down</i>
-                    </div> */}
                     <div className="comment-icon">
                       <FaRegComment size="fa-lg" />
                     </div>
@@ -145,10 +170,23 @@ const Home = ({ history }) => {
                       <BiShare size="bi-lg" />
                     </div>
                   </div>
-                  <h6>{e.likes.length} likes</h6>
+                  <h6 onClick={() => getLikerInfo(e.likes)}>{e.likes.length} likes</h6>
                   <h6>{e.title}</h6>
                   <p>{e.body}</p>
-                  <input type="text" placeholder="add a comment" />
+                  {
+                    e.comments.map((data) => {
+                      return (
+                        <h6><span><strong>{data.postedBy.name}</strong> : </span>{data.text}</h6>
+                      )
+                    })
+                  }
+                  <form onSubmit={(event) => {
+                    event.preventDefault()
+                    makeComment(event.target[0].value,e._id)
+                  }}>
+                   <input type="text" placeholder="add a comment" />
+                  </form>
+                 
                 </div>
               </div>
             ))}
