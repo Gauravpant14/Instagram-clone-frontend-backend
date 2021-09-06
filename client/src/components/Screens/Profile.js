@@ -6,6 +6,7 @@ import { FiSettings } from 'react-icons/fi';
 import { useSelector, useDispatch } from "react-redux";
 import { getAllDataApi } from "../../redux/actions/getAllPost";
 import { Button } from 'bootstrap';
+import DropDownList from '../../comman/Drop-down';
 const Profile = () => {
     const allPost = useSelector(state => state.allPost.posts)
     const userID = localStorage.getItem("userId")
@@ -46,6 +47,18 @@ const Profile = () => {
             .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
             .join(' ');
     }
+
+    const handelPageChange = (e) => {
+        setPostPerPage(parseInt(e.target.value));
+    }
+
+    const itemListPerPage = [
+        { id: '9', name: '9 per page' },
+        { id: '18', name: '18 per page' },
+        { id: '27', name: '27 per page' },
+        { id: '36', name: '36 per page' },
+      ]
+
 
     return (
         <div>
@@ -95,6 +108,8 @@ const Profile = () => {
                         </div>
                     </section>
                 </div>
+
+                <div className="pagination-container">
                 <Pagination
                     activePage={currentPage}
                     itemsCountPerPage={postsPerPage}
@@ -109,6 +124,8 @@ const Profile = () => {
                     onChange={(e) => handlePageClick(e)}
                 />
 
+                <DropDownList data={itemListPerPage}  _handleOnChange={handelPageChange}/>
+                </div>
                 {openImg.open ? <ShowImg data={openImg.data} closeImg={setOpenImg} /> : null}
 
                 <div className="gallary ">

@@ -278,3 +278,8 @@ nav .brand-logo {
 }
 
 /*loader that is not used */
+
+.pagination-container{
+  display: flex;
+  justify-content: space-between;
+}

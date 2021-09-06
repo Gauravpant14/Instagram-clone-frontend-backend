@@ -69,7 +69,6 @@ const CreatePost = () => {
       <div className="card create-post">
       
         <h4>Upload New Posts</h4>
-        {JSON.stringify(url)}
         <div className="title-input">
           <input
             type="text"

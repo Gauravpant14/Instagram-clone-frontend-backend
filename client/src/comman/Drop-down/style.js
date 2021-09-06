@@ -13,6 +13,9 @@ export const SelectWrap = styled.select`
     min-width: 120px;
     height: 32px;
     margin-top: 15px;
+    width: 20%;
+  margin-top: 0px;
+  display: block;
 
     
     option{
